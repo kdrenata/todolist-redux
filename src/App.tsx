@@ -46,7 +46,6 @@ export type TasksState = Record<string, Task[]>
 
 type ThemeMode = 'dark' | 'light'
 
-
 export const App = () => {
 
   const todolists = useAppSelector(selectTodolists)
@@ -75,13 +74,11 @@ export const App = () => {
   }
 
   const createTodolist = (title: string) => {
-    const action = createTodolistAC(title)
-    dispatch(action)
+    dispatch(createTodolistAC(title))
   }
 
   const deleteTodolist = (todolistId: string) => {
-    const action = deleteTodolistAC(todolistId)
-    dispatch(action)
+    dispatch(deleteTodolistAC({id: todolistId}))
   }
 
   const changeTodolistTitle = (todolistId: string, title: string) => {
