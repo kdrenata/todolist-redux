@@ -1,4 +1,4 @@
-import './App.css'
+ import './App.css'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 import {useState} from 'react'
 import {CreateItemForm} from '../CreateItemForm.tsx'
@@ -25,7 +25,7 @@ import {containerSx} from '../TodolistItem.styles.ts'
 import {NavButton} from '../NavButton.ts'
 import {useAppDispatch} from "../common/hooks/useAppDispatch.ts";
 import {useAppSelector} from "../common/hooks/useAppSelector.ts";
-import {selectTodolists} from "../model/todolist-selectors.ts";
+import {selectTodolists} from "../model/todolists-selectors.ts";
 import {selectTasks} from "../model/tasks-selectors.ts";
 
 export type Todolist = {
@@ -69,16 +69,19 @@ export const App = () => {
     setThemeMode(themeMode === 'light' ? 'dark' : 'light')
   }
 
+
+  const deleteTodolist = (todolistId: string) => {
+    dispatch(deleteTodolistAC({id: todolistId}))
+  }
+
+
+
   const changeFilter = (todolistId: string, filter: FilterValues) => {
     dispatch(changeTodolistFilterAC({id: todolistId, filter}))
   }
 
   const createTodolist = (title: string) => {
     dispatch(createTodolistAC(title))
-  }
-
-  const deleteTodolist = (todolistId: string) => {
-    dispatch(deleteTodolistAC({id: todolistId}))
   }
 
   const changeTodolistTitle = (todolistId: string, title: string) => {

@@ -3,6 +3,26 @@ import type {Task, TasksState} from '../app/App.tsx'
 import type {CreateTodolistAction, DeleteTodolistAction} from './todolists-reducer'
 import {nanoid} from "@reduxjs/toolkit";
 
+
+export const deleteTaskAC = (payload: { todolistId: string, taskId: string }) => {
+  return {type: 'delete_task', payload} as const
+}
+
+export const createTaskAC = (payload: { todolistId: string, title: string }) => {
+  return {type: 'create_task', payload} as const
+}
+
+export const changeTaskStatusAC = (payload: { todolistId: string, taskId: string, isDone: boolean }) => {
+  return {type: 'change_task_status', payload} as const
+}
+
+export const changeTaskTitleAC = (payload: { todolistId: string, taskId: string, title: string }) => {
+  return {type: 'change_task_title', payload} as const
+}
+
+
+
+
 const initialState: TasksState = {}
 
 export const tasksReducer = (state: TasksState = initialState, action: Actions): TasksState => {
@@ -40,22 +60,6 @@ export const tasksReducer = (state: TasksState = initialState, action: Actions):
     default:
       return state
   }
-}
-
-export const deleteTaskAC = (payload: { todolistId: string, taskId: string }) => {
-  return {type: 'delete_task', payload} as const
-}
-
-export const createTaskAC = (payload: { todolistId: string, title: string }) => {
-  return {type: 'create_task', payload} as const
-}
-
-export const changeTaskStatusAC = (payload: { todolistId: string, taskId: string, isDone: boolean }) => {
-  return {type: 'change_task_status', payload} as const
-}
-
-export const changeTaskTitleAC = (payload: { todolistId: string, taskId: string, title: string }) => {
-  return {type: 'change_task_title', payload} as const
 }
 
 export type DeleteTaskAction = ReturnType<typeof deleteTaskAC>
