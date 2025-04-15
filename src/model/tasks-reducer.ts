@@ -6,13 +6,6 @@ export const createTaskAC = createAction<{todolistId: string, title: string}>('t
 export const changeTaskStatusAC = createAction<{todolistId: string, taskId: string, isDone: boolean}>('tasks/changeTaskStatus')
 export const changeTaskTitleAC = createAction<{todolistId: string, taskId: string, title: string}>('tasks/changeTaskTitle')
 
-export type Task = {
-  id: string
-  title: string
-  isDone: boolean
-}
-
-export type TasksState = Record<string, Task[]>
 
 const initialState: TasksState = {}
 
@@ -49,5 +42,14 @@ export const tasksReducer = createReducer(initialState, builder => {
         state[action.payload.id] = []
       })
 })
+
+
+export type Task = {
+    id: string
+    title: string
+    isDone: boolean
+}
+export type TasksState = Record<string, Task[]>
+
 
 

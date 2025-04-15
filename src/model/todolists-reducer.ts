@@ -1,5 +1,4 @@
 
-import type {FilterValues, Todolist} from '../app/App.tsx'
 import {createAction, createReducer, nanoid} from "@reduxjs/toolkit";
 
 export const deleteTodolistAC = createAction<{ id: string }>('todolists/deleteTodolist')
@@ -38,6 +37,10 @@ export const todolistsReducer = createReducer(initialState, builder => {
         }
       })
 })
+export type Todolist = {
+    id: string
+    title: string
+    filter: FilterValues
+}
 
-export type DeleteTodolistAction = ReturnType<typeof deleteTodolistAC>
-export type CreateTodolistAction = ReturnType<typeof createTodolistAC>
+export type FilterValues = 'all' | 'active' | 'completed'
