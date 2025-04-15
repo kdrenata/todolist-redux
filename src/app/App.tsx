@@ -27,6 +27,8 @@ import {useAppDispatch} from "../common/hooks/useAppDispatch.ts";
 import {useAppSelector} from "../common/hooks/useAppSelector.ts";
 import {selectTodolists} from "../model/todolists-selectors.ts";
 import {selectTasks} from "../model/tasks-selectors.ts";
+import {ThemeMode} from "./app-reducer.ts";
+ import {selectThemeMode} from "./app-selectors.ts";
 
 export type Todolist = {
   id: string
@@ -44,17 +46,14 @@ export type FilterValues = 'all' | 'active' | 'completed'
 
 export type TasksState = Record<string, Task[]>
 
-type ThemeMode = 'dark' | 'light'
 
 export const App = () => {
 
   const todolists = useAppSelector(selectTodolists)
   const tasks = useAppSelector(selectTasks)
+  const themeMode = useAppSelector(selectThemeMode)
 
   const dispatch = useAppDispatch()
-
-
-  const [themeMode, setThemeMode] = useState<ThemeMode>('light')
 
   const theme = createTheme({
     palette: {
